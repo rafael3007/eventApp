@@ -10,8 +10,9 @@ export default function Home() {
     const [participantName, setParticipantName] = useState('')
 
     function handleParticipantAdd() {
-        if (participants.includes(participantName)) {
-            return Alert.alert("Participante already exists!", "Participante already exists")
+        var participantTemp = participants.map(name => name.toUpperCase())
+        if (participantTemp.includes(participantName.toUpperCase())) {
+            return Alert.alert("Alerta!", "Já existe um participant registrado com esse nome")
         }
         setParticipant([...participants, participantName])
         setParticipantName('')
@@ -24,7 +25,7 @@ export default function Home() {
               onPress: () => console.log('Cancel Pressed'),
               style: 'cancel',
             },
-            {text: 'Excluir', onPress: () => setParticipant(prevState=>prevState.filter(pName => pName !== nome ))},
+            {text: 'Excluir', onPress: () => setParticipant(prevState=>prevState.filter(pName => pName.toUpperCase() !== nome.toUpperCase() ))},
           ])
        
     }
